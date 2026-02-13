@@ -1,0 +1,77 @@
+/* ===========================
+   SKILL FILTER FUNCTION
+=========================== */
+
+function filterSkills(category) {
+    const items = document.querySelectorAll(".tool-item");
+
+    items.forEach(item => {
+        if (category === "all") {
+            item.style.display = "flex";
+        } else {
+            if (item.classList.contains(category)) {
+                item.style.display = "flex";
+            } else {
+                item.style.display = "none";
+            }
+        }
+    });
+}
+
+
+/* ===========================
+   DASHBOARD COUNTER ANIMATION
+=========================== */
+
+const counters = document.querySelectorAll('.counter');
+
+counters.forEach(counter => {
+    counter.innerText = '0';
+
+    const updateCounter = () => {
+        const target = +counter.getAttribute('data-target');
+        const current = +counter.innerText;
+
+        const increment = Math.ceil(target / 100);
+
+        if (current < target) {
+            counter.innerText = current + increment;
+            setTimeout(updateCounter, 20);
+        } else {
+            counter.innerText = target;
+        }
+    };
+
+    updateCounter();
+});
+
+
+/* ===========================
+   CEH VERIFICATION POPUP
+=========================== */
+
+function showVerificationPopup() {
+    const popup = document.getElementById("verificationPopup");
+    popup.style.display = "flex";
+
+    // Redirect after 1.5 seconds
+    setTimeout(() => {
+        window.open("https://aspen.eccouncil.org/Verify", "_blank");
+    }, 1500);
+}
+
+function closePopup() {
+    document.getElementById("verificationPopup").style.display = "none";
+}
+
+
+/* ===========================
+   OPTIONAL: CLOSE POPUP ON OUTSIDE CLICK
+=========================== */
+
+window.onclick = function(event) {
+    const popup = document.getElementById("verificationPopup");
+    if (event.target === popup) {
+        popup.style.display = "none";
+    }
+};
